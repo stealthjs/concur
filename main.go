@@ -2,26 +2,16 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 )
 
 func main() {
 	jobs := make(chan int, 50)
 	results := make(chan int, 50)
 
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
+	for i := 0; i < runtime.NumCPU(); i++ {
+		go worker(jobs, results)
+	}
 
 	for i := 0; i < 45; i++ {
 		jobs <- i

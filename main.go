@@ -21,7 +21,7 @@ func main() {
 	for j := 0; j < 45; j++ {
 		fmt.Println(<-results)
 	}
-	fmt.Println("Finished")
+	fmt.Println("Finished Using GoLand")
 }
 
 func worker(jobs <-chan int, results chan<- int) {
